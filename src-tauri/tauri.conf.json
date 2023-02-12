@@ -1,0 +1,131 @@
+{
+  "build": {
+    "beforeDevCommand": {
+      "script": "yarn build_py && yarn dev"
+    },
+    "beforeBuildCommand": {
+      "script": "yarn build_py && yarn build"
+    },
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": true
+  },
+  "package": {
+    "productName": "Yiddy",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "clipboard": {
+        "all": true,
+        "writeText": true,
+        "readText": true
+      },
+      "dialog": {
+        "all": true,
+        "open": true,
+        "save": true
+      },
+      "notification": {
+        "all": true
+      },
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "writeFile": true,
+        "readFile": true,
+        "readDir": true,
+        "createDir": true,
+        "removeFile": true,
+        "exists": true,
+        "scope": [
+          "**"
+        ]
+      },
+      "shell": {
+        "sidecar": true,
+        "execute": true,
+        "scope": [
+          {
+            "name": "bin/python/test",
+            "sidecar": true,
+            "args": true
+          },
+          {
+            "name": "check-ffmpeg",
+            "cmd": "which",
+            "args": [
+              "-a",
+              {
+                "validator": "\\S+"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [
+        "bin/python/test"
+      ],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.yiddy",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 400,
+        "width": 700,
+        "minWidth": 700,
+        "minHeight": 400,
+        "resizable": true,
+        "title": "Yiddy",
+        "visible": false,
+        "label": "main",
+        "center": true
+      },
+      {
+        "width": 400,
+        "height": 200,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "center": true
+      }
+    ]
+  }
+}
